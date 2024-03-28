@@ -1,5 +1,7 @@
 package com.example;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,6 +21,9 @@ public class MainController {
     @FXML
     private TextField weightField;
 
+	public DoubleProperty cmHeight = new SimpleDoubleProperty();
+	public DoubleProperty kgWeight = new SimpleDoubleProperty();
+	public DoubleProperty bmi = new SimpleDoubleProperty();	
     
     private Model model;
     
@@ -27,19 +32,18 @@ public class MainController {
 			throw new IllegalStateException("Model can only be initialized once");
 		
     	this.model = model;
+    	// Load initial value
+    	bmi.set(model.load());
     	
     	// Bind Model to View
-		bmiLabel.textProperty().bind(model.bmi.asString());
-		heightField.textProperty().bindBidirectional(model.cmHeight, new NumberStringConverter());
-		weightField.textProperty().bindBidirectional(model.kgHeight, new NumberStringConverter());
+		bmiLabel.textProperty().bind(bmi.asString());
+		heightField.textProperty().bindBidirectional(cmHeight, new NumberStringConverter());
+		weightField.textProperty().bindBidirectional(kgWeight, new NumberStringConverter());
 		
 		// Event Handler
 		calcButton.setOnAction(e -> {
-			model.calc();
+			double newBmi = model.calc(cmHeight.get() / 100, kgWeight.get());
+			bmi.set(newBmi);
         });			
     }
-    
-	public void initialize() {
-		// Write your initialization code here
-	}
 }
