@@ -36,7 +36,6 @@ public class MainController {
 		// Event Handler
 		calcButton.setOnAction(e -> {
 			model.calc();
-			model.save();
         });			
     }
     
