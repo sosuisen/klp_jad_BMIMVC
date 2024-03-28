@@ -10,7 +10,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 
 public class Model {
 	public DoubleProperty cmHeight = new SimpleDoubleProperty();
-	public DoubleProperty kgHeight = new SimpleDoubleProperty();
+	public DoubleProperty kgWeight = new SimpleDoubleProperty();
 	public DoubleProperty bmi = new SimpleDoubleProperty();
 	
 	private String filePath = "bmi.txt";
@@ -36,7 +36,7 @@ public class Model {
 	
 	public void calc() {
 		double height = cmHeight.getValue() / 100;
-		double weight = kgHeight.getValue();
+		double weight = kgWeight.getValue();
 		bmi.set(Math.round(weight / (height * height)));
 		save();
 	}

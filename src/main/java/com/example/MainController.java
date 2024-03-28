@@ -31,7 +31,7 @@ public class MainController {
     	// Bind Model to View
 		bmiLabel.textProperty().bind(model.bmi.asString());
 		heightField.textProperty().bindBidirectional(model.cmHeight, new NumberStringConverter());
-		weightField.textProperty().bindBidirectional(model.kgHeight, new NumberStringConverter());
+		weightField.textProperty().bindBidirectional(model.kgWeight, new NumberStringConverter());
 		
 		// Event Handler
 		calcButton.setOnAction(e -> {
