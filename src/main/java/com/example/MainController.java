@@ -22,7 +22,7 @@ public class MainController {
     
     private Model model;
     
-    public void initModel(Model model) {
+    public void setModel(Model model) {
 		if (this.model != null)
 			throw new IllegalStateException("Model can only be initialized once");
 		
