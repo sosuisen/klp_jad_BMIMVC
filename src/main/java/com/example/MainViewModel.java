@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.util.converter.NumberStringConverter;
 
-public class MainController {
+public class MainViewModel {
     @FXML
     private Label bmiLabel;
 
@@ -35,15 +35,17 @@ public class MainController {
     	// Load initial value
     	bmi.set(model.load());
     	
-    	// Bind Model to View
-		bmiLabel.textProperty().bind(bmi.asString());
-		heightField.textProperty().bindBidirectional(cmHeight, new NumberStringConverter());
-		weightField.textProperty().bindBidirectional(kgWeight, new NumberStringConverter());
-		
 		// Event Handler
 		calcButton.setOnAction(e -> {
 			double newBmi = model.calc(cmHeight.get() / 100, kgWeight.get());
 			bmi.set(newBmi);
         });			
+    }
+    
+    public void initialize(){
+    	// Bind ViewModel to View
+		bmiLabel.textProperty().bind(bmi.asString());
+		heightField.textProperty().bindBidirectional(cmHeight, new NumberStringConverter());
+		weightField.textProperty().bindBidirectional(kgWeight, new NumberStringConverter());    	
     }
 }

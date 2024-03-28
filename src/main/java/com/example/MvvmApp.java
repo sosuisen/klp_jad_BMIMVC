@@ -8,7 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MvcApp extends Application {
+public class MvvmApp extends Application {
 
     @Override
     public void start(Stage stage) {
@@ -20,7 +20,7 @@ public class MvcApp extends Application {
 			Parent root = mainViewLoader.load();
 
 			// Get Controller
-			MainController mainController = mainViewLoader.getController(); 
+			MainViewModel mainController = mainViewLoader.getController(); 
 			
 			// Create and set Model to Controller
 			var model = new Model();
