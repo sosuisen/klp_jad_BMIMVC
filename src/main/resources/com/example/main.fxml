@@ -26,8 +26,8 @@
             <TextField fx:id="heightField" prefHeight="25.0" prefWidth="89.0" GridPane.columnIndex="1" />
             <TextField fx:id="weightField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label fx:id="bmiLabel" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="身長(cm)" />
-            <Label text="体重(kg)" GridPane.rowIndex="1" />
+            <Label text="身長(feet)" />
+            <Label text="体重(pounds)" GridPane.rowIndex="1" />
             <Label text="BMI" GridPane.rowIndex="2" />
             <Button fx:id="calcButton" mnemonicParsing="false" text="計算" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>

@@ -9,6 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.util.converter.NumberStringConverter;
 
 public class MainViewModel {
+	private final double METER_FEET = 3.2808;
+	private final double KG_POUNDS = 2.2046;
+	
     @FXML
     private Label bmiLabel;
 
@@ -21,8 +24,8 @@ public class MainViewModel {
     @FXML
     private TextField weightField;
 
-	public DoubleProperty cmHeight = new SimpleDoubleProperty();
-	public DoubleProperty kgWeight = new SimpleDoubleProperty();
+	public DoubleProperty feetHeight = new SimpleDoubleProperty();
+	public DoubleProperty poundsWeight = new SimpleDoubleProperty();
 	public DoubleProperty bmi = new SimpleDoubleProperty();	
     
     private Model model;
@@ -36,8 +39,11 @@ public class MainViewModel {
     	bmi.set(model.load());
     	
 		// Event Handler
-		calcButton.setOnAction(e -> {
-			double newBmi = model.calc(cmHeight.get() / 100, kgWeight.get());
+		calcButton.setOnAction(e -> {		
+			var mHeight = feetHeight.doubleValue() / METER_FEET;
+			var kgWeight = poundsWeight.doubleValue() / KG_POUNDS;
+
+			double newBmi = model.calc(mHeight, kgWeight);
 			bmi.set(newBmi);
         });			
     }
@@ -45,7 +51,7 @@ public class MainViewModel {
     public void initialize(){
     	// Bind ViewModel to View
 		bmiLabel.textProperty().bind(bmi.asString());
-		heightField.textProperty().bindBidirectional(cmHeight, new NumberStringConverter());
-		weightField.textProperty().bindBidirectional(kgWeight, new NumberStringConverter());    	
+		heightField.textProperty().bindBidirectional(feetHeight, new NumberStringConverter());
+		weightField.textProperty().bindBidirectional(poundsWeight, new NumberStringConverter());    	
     }
 }
