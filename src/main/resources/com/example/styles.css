@@ -13,3 +13,8 @@
 .button:pressed {
     -fx-background-color: #61a2b1;
 }
+
+VBox {
+	-fx-padding: 7px;
+}
+
