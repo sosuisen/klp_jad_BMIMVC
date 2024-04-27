@@ -29,7 +29,7 @@ public class Model {
 	}
 	
 	public double calc(double meterHeight, double kgWeight) {
-		double bmi = Math.round(kgWeight / (meterHeight * meterHeight));
+		double bmi = Math.round(kgWeight / (meterHeight * meterHeight) * 10) / 10.0;
 		save(bmi);
 		return bmi;
 	}	
