@@ -37,7 +37,8 @@ public class Model {
 	public void calc() {
 		double height = cmHeight.getValue() / 100;
 		double weight = kgWeight.getValue();
-		bmi.set(Math.round(weight / (height * height)));
+		// 小数点第1位までで四捨五入
+		bmi.set(Math.round(weight / (height * height) * 10) / 10.0);
 		save();
 	}
 	
