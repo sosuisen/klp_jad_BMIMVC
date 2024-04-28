@@ -27,18 +27,23 @@ public class MainViewModel {
     
     private Model model;
     
+    private double round(double value) {
+        return Math.round(value * 10) / 10.0;
+    }
+    
     public void initModel(Model model) {
 		if (this.model != null)
 			throw new IllegalStateException("Model can only be initialized once");
 		
     	this.model = model;
+
     	// Load initial value
-    	bmi.set(model.load());
+    	bmi.set(round(model.load()));
     	
 		// Event Handler
 		calcButton.setOnAction(e -> {
 			double newBmi = model.calc(cmHeight.get() / 100, kgWeight.get());
-			bmi.set(newBmi);
+			bmi.set(round(newBmi));
         });			
     }
     
